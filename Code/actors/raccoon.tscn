@@ -9,8 +9,11 @@
 size = Vector2(15.5, 23.5)
 
 [node name="Raccoon" type="CharacterBody2D"]
+position = Vector2(1159, 657)
 collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_ib0b1")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
@@ -22,6 +25,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_cq8c4")
 
 [node name="MovementValidation" type="RayCast2D" parent="."]
+collision_mask = 2
 script = ExtResource("2_mdty0")
 
 [node name="MovementTween" type="Node2D" parent="."]

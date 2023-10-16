@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ba7un361xeghb"]
+[gd_scene load_steps=6 format=3 uid="uid://ba7un361xeghb"]
 
 [ext_resource type="Texture2D" uid="uid://cr687ls7ckx4n" path="res://assets/tilemap.png" id="1_aj6v0"]
 [ext_resource type="PackedScene" uid="uid://dhanruwapv4l1" path="res://actors/player/player.tscn" id="2_rsgph"]
 [ext_resource type="Script" path="res://scripts/patch.gd" id="2_u1vmo"]
-[ext_resource type="PackedScene" uid="uid://c3ncph2e40ll4" path="res://actors/raccoon.tscn" id="4_ovi2l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7csxe"]
 texture = ExtResource("1_aj6v0")
@@ -26,6 +25,10 @@ pumpkin_spawn_weight = 0.25
 
 [node name="Player" parent="." instance=ExtResource("2_rsgph")]
 position = Vector2(336, 80)
+metadata/_edit_group_ = true
 
-[node name="Raccoon" parent="." instance=ExtResource("4_ovi2l")]
-position = Vector2(304, 241)
+[node name="RaccoonTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="RaccoonTimer" to="TileMap" method="_on_raccoon_timer_timeout"]

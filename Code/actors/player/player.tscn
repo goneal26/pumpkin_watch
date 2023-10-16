@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/MovementValidation.gd" id="2_0ec25"]
 [ext_resource type="Script" path="res://scripts/MovementTween.gd" id="3_gg82x"]
 [ext_resource type="Texture2D" uid="uid://decs1cc3k87td" path="res://assets/player.png" id="4_ekx7m"]
-[ext_resource type="Texture2D" uid="uid://1jbj0dap0lrw" path="res://assets/light_cone.png" id="5_70vmq"]
+[ext_resource type="PackedScene" uid="uid://jdln7bqhckgi" path="res://props/flashlight.tscn" id="5_brtat"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ben00"]
 radius = 15.0
@@ -26,8 +26,5 @@ texture = ExtResource("4_ekx7m")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ben00")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(100, 4)
-shadow_enabled = true
-texture = ExtResource("5_70vmq")
-height = 0.24
+[node name="Flashlight" parent="." instance=ExtResource("5_brtat")]
+visible = false

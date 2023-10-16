@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @onready var movement_validation: RayCast2D = $MovementValidation
 @onready var movement_tween: Node = $MovementTween
+@onready var flashlight: RayCast2D = $Flashlight
 
 @export var grid_size: int = 32
 
@@ -19,7 +20,6 @@ func _process(_delta: float):
 		direction = Vector2.DOWN
 	elif Input.is_action_pressed("up"):
 		direction = Vector2.UP
-
 
 func _physics_process(_delta: float):
 	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO:

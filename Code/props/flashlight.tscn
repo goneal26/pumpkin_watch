@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://jdln7bqhckgi"]
+
+[ext_resource type="Script" path="res://props/flashlight.gd" id="1_ynfvk"]
+
+[node name="Flashlight" type="RayCast2D"]
+rotation = 4.71239
+target_position = Vector2(9.06291e-07, 76)
+collision_mask = 3
+script = ExtResource("1_ynfvk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -7.0
+offset_right = 7.0
+offset_bottom = 76.0
+color = Color(1, 1, 1, 0.419608)
