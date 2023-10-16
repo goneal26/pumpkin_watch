@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3ncph2e40ll4"]
+
+[ext_resource type="Script" path="res://actors/raccoon.gd" id="1_ib0b1"]
+[ext_resource type="Texture2D" uid="uid://coq4hvfci3yaa" path="res://assets/enemy.png" id="1_u01hg"]
+[ext_resource type="Script" path="res://scripts/MovementValidation.gd" id="2_mdty0"]
+[ext_resource type="Script" path="res://scripts/MovementTween.gd" id="3_ixhak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cq8c4"]
+size = Vector2(15.5, 23.5)
+
+[node name="Raccoon" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_ib0b1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_u01hg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.25, -0.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_cq8c4")
+
+[node name="MovementValidation" type="RayCast2D" parent="."]
+script = ExtResource("2_mdty0")
+
+[node name="MovementTween" type="Node2D" parent="."]
+script = ExtResource("3_ixhak")
+move_time = 0.25
+transition = 1

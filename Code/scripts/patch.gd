@@ -6,7 +6,8 @@ var map_size: Vector2i = Vector2i(36, 20)
 
 const VINE_ATLAS_COORD: Vector2i = Vector2i(1, 0)
 
-func spawn_pumpkins():
+# Called when the node enters the scene tree for the first time.
+func _ready():
 	for x in map_size.x:
 		for y in map_size.y:
 			if get_cell_atlas_coords(0, Vector2i(x, y)) == VINE_ATLAS_COORD and randf() < pumpkin_spawn_weight:
@@ -14,10 +15,6 @@ func spawn_pumpkins():
 				var pumpkin_instance = pumpkin.instantiate()
 				get_parent().add_child.call_deferred(pumpkin_instance)
 				pumpkin_instance.position = map_to_local(Vector2i(x, y))
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	spawn_pumpkins()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
