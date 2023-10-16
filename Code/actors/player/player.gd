@@ -8,7 +8,7 @@ extends CharacterBody2D
 var direction: Vector2 = Vector2.ZERO
 var can_move: bool = true
 
-func _process(delta: float):
+func _process(_delta: float):
 #	direction.x = -int(Input.is_action_pressed("left")) + int(Input.is_action_pressed("right"))
 #	direction.y = -int(Input.is_action_pressed("up")) + int(Input.is_action_pressed("down"))
 	if Input.is_action_pressed("left"):
@@ -21,7 +21,7 @@ func _process(delta: float):
 		direction = Vector2.UP
 
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO:
 		can_move = false
 		movement_tween.run(self, global_position + direction * grid_size)
