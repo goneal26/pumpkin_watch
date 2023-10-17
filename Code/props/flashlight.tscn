@@ -1,15 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://jdln7bqhckgi"]
+[gd_scene load_steps=3 format=3 uid="uid://jdln7bqhckgi"]
 
 [ext_resource type="Script" path="res://props/flashlight.gd" id="1_ynfvk"]
+[ext_resource type="Texture2D" uid="uid://br620vjow68ej" path="res://assets/flashlight.png" id="2_ypwgm"]
 
 [node name="Flashlight" type="RayCast2D"]
 rotation = 4.71239
-target_position = Vector2(9.06291e-07, 76)
+target_position = Vector2(1.24019e-06, 104)
 collision_mask = 3
 script = ExtResource("1_ynfvk")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -7.0
-offset_right = 7.0
-offset_bottom = 76.0
-color = Color(1, 1, 1, 0.419608)
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-0.00138474, 55.3311)
+rotation = 1.5708
+scale = Vector2(1, 0.77853)
+texture = ExtResource("2_ypwgm")
+texture_scale = 2.0

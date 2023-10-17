@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhanruwapv4l1"]
+[gd_scene load_steps=14 format=3 uid="uid://dhanruwapv4l1"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_m1jtw"]
 [ext_resource type="Script" path="res://scripts/MovementValidation.gd" id="2_0ec25"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dqrfmlri6y202" path="res://assets/player2.png" id="7_bmtpf"]
 [ext_resource type="Texture2D" uid="uid://br41j6lifg5uu" path="res://assets/player_side1.png" id="8_cpik1"]
 [ext_resource type="Texture2D" uid="uid://dcpyr272wbq10" path="res://assets/player_side2.png" id="9_qq8mb"]
+[ext_resource type="Texture2D" uid="uid://ev4u6k36qp4n" path="res://assets/player_light.png" id="11_5oi0p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bavrf"]
 animations = [{
@@ -69,4 +70,7 @@ animation = &"side"
 shape = SubResource("CircleShape2D_ben00")
 
 [node name="Flashlight" parent="." instance=ExtResource("5_brtat")]
-visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("11_5oi0p")

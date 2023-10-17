@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var movement_validation: RayCast2D = $MovementValidation
 @onready var movement_tween: Node = $MovementTween
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var eyes: PointLight2D = $Sprite2D/PointLight2D
 
 @export var grid_size : int = 16
 
@@ -15,21 +16,36 @@ func get_scared():
 	if is_scared == false:
 		is_scared = true
 		run_direction = -run_direction
+		if run_direction.x < 0:
+			flip(true)
+		else:
+			flip(false)
 		print("is scared", is_scared)
 	else:
 		pass
 
+func _ready():
+	direction = run_direction
+	if run_direction.x < 0:
+		flip(true)
+	else:
+		flip(false)
+
+func flip(is_flipped: bool):
+	if is_flipped:
+		sprite.flip_h = true
+		eyes.texture = load("res://assets/enemy_eyes_flipped.png")
+	else: # this code puts out a really weird c++ error, dont know what it means but it doesn't break anything
+		sprite.flip_h = false
+		eyes.texture = load("res://assets/enemy_eyes.png")
+
 func _process(_delta):
-	if position.x < 0 or position.y < 0 or position.x > get_viewport_rect().size.x or position.y > get_viewport_rect().size.y:
+	if position.x > 425 or position.x < 152 or position.y < 26 or position.y > 315:
 		self.queue_free()
 		print("deleted")
 
 func _physics_process(_delta: float):
 	direction = run_direction
-	if direction.x < 0:
-		sprite.flip_h = true
-	else:
-		sprite.flip_h = false
 	if movement_validation.is_colliding():
 		var pumpkin = movement_validation.get_collider()
 		if pumpkin != null and pumpkin.get_class() == "StaticBody2D":

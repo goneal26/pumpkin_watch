@@ -7,11 +7,21 @@
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fiwhk"]
 texture = ExtResource("1_aj6v0")
 0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
 2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_lrfa8"]
+physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_fiwhk")
 
 [node name="PumpkinPatch" type="Node2D"]
@@ -32,5 +42,12 @@ wait_time = 10.0
 autostart = true
 
 [node name="DayNightTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2, 2)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.282353, 0.282353, 0.282353, 1)
 
 [connection signal="timeout" from="RaccoonTimer" to="TileMap" method="_on_raccoon_timer_timeout"]

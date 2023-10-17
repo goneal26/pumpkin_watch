@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cevsll5h1eoj3"]
+[gd_scene load_steps=5 format=3 uid="uid://cevsll5h1eoj3"]
 
 [ext_resource type="Texture2D" uid="uid://ckvgyxoi08s73" path="res://assets/pumpkin.png" id="1_i5im0"]
 [ext_resource type="Script" path="res://props/pumpkin.gd" id="1_uo0nq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v87u1"]
 size = Vector2(10, 9)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s2qb5"]
+polygon = PackedVector2Array(-6, 5, -5, 5, -5, 6, -4, 6, -4, 7, -2, 7, -2, 6, 2, 6, 2, 7, 4, 7, 4, 6, 5, 6, 5, 5, 6, 5, 6, -1, 5, -1, 5, -2, 4, -2, 4, -3, -4, -3, -4, -2, -5, -2, -5, -1, -6, -1)
 
 [node name="Pumpkin" type="StaticBody2D"]
 collision_layer = 3
@@ -16,3 +19,6 @@ texture = ExtResource("1_i5im0")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_v87u1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_s2qb5")
