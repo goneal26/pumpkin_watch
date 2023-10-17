@@ -20,9 +20,6 @@ func get_scared():
 			flip(true)
 		else:
 			flip(false)
-		print("is scared", is_scared)
-	else:
-		pass
 
 func _ready():
 	direction = run_direction
@@ -41,9 +38,8 @@ func flip(is_flipped: bool):
 # this code puts out a really weird c++ error, dont know what it means but it doesn't break anything
 
 func _process(_delta):
-	if position.x > 425 or position.x < 152 or position.y < 26 or position.y > 315:
+	if position.x > 440 or position.x < 121 or position.y < 9 or position.y > 332:
 		self.queue_free()
-		print("deleted")
 
 func _physics_process(_delta: float):
 	direction = run_direction

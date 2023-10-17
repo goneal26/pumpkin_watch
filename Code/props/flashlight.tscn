@@ -5,14 +5,23 @@
 
 [node name="Flashlight" type="RayCast2D"]
 rotation = 4.71239
-target_position = Vector2(1.24019e-06, 104)
+target_position = Vector2(0, 96)
 collision_mask = 3
 script = ExtResource("1_ynfvk")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-0.00138474, 55.3311)
+[node name="MainLight" type="PointLight2D" parent="."]
 rotation = 1.5708
 scale = Vector2(1, 0.77853)
 shadow_enabled = true
 texture = ExtResource("2_ypwgm")
+offset = Vector2(48, 0)
+texture_scale = 2.0
+
+[node name="ShadowLight" type="PointLight2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1, 0.77853)
+range_item_cull_mask = 2
+shadow_enabled = true
+texture = ExtResource("2_ypwgm")
+offset = Vector2(48, 0)
 texture_scale = 2.0

@@ -42,5 +42,4 @@ func _on_raccoon_timer_timeout():
 			raccoon_instance.position = map_to_local(Vector2(randi_range(11, 24), 19))
 		Vector2.DOWN:
 			raccoon_instance.position = map_to_local(Vector2(randi_range(11, 24), 1))
-	print(direction)
 	raccoon_instance.run_direction = direction
