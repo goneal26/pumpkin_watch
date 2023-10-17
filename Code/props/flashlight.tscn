@@ -13,5 +13,6 @@ script = ExtResource("1_ynfvk")
 position = Vector2(-0.00138474, 55.3311)
 rotation = 1.5708
 scale = Vector2(1, 0.77853)
+shadow_enabled = true
 texture = ExtResource("2_ypwgm")
 texture_scale = 2.0

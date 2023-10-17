@@ -35,9 +35,10 @@ func flip(is_flipped: bool):
 	if is_flipped:
 		sprite.flip_h = true
 		eyes.texture = load("res://assets/enemy_eyes_flipped.png")
-	else: # this code puts out a really weird c++ error, dont know what it means but it doesn't break anything
+	else: 
 		sprite.flip_h = false
 		eyes.texture = load("res://assets/enemy_eyes.png")
+# this code puts out a really weird c++ error, dont know what it means but it doesn't break anything
 
 func _process(_delta):
 	if position.x > 425 or position.x < 152 or position.y < 26 or position.y > 315:
