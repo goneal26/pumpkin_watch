@@ -3,8 +3,9 @@ extends CharacterBody2D
 @onready var movement_validation: RayCast2D = $MovementValidation
 @onready var movement_tween: Node = $MovementTween
 @onready var flashlight: RayCast2D = $Flashlight
+@onready var sprite: AnimatedSprite2D = $Sprite
 
-@export var grid_size: int = 32
+@export var grid_size: int = 16
 
 var direction: Vector2 = Vector2.ZERO
 var can_move: bool = true
