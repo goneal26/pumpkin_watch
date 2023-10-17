@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var movement_tween: Node = $MovementTween
 @onready var sprite: Sprite2D = $Sprite2D
 
-@export var grid_size : int = 32
+@export var grid_size : int = 16
 
 var run_direction: Vector2 
 var direction: Vector2 = Vector2.ZERO

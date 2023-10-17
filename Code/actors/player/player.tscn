@@ -63,7 +63,7 @@ transition = 1
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bavrf")
-animation = &"front"
+animation = &"side"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ben00")

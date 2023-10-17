@@ -6,21 +6,20 @@
 [ext_resource type="Script" path="res://scripts/MovementTween.gd" id="3_ixhak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cq8c4"]
-size = Vector2(15.5, 23.5)
+size = Vector2(9, 12.0002)
 
 [node name="Raccoon" type="CharacterBody2D"]
 position = Vector2(1159, 657)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_ib0b1")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -6)
 texture = ExtResource("1_u01hg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, -0.25)
+position = Vector2(0.00012207, -3.5)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_cq8c4")
 

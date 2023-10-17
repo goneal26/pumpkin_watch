@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://props/pumpkin.gd" id="1_uo0nq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v87u1"]
-size = Vector2(27.5, 25)
+size = Vector2(10, 9)
 
 [node name="Pumpkin" type="StaticBody2D"]
 collision_layer = 3
@@ -14,5 +14,5 @@ script = ExtResource("1_uo0nq")
 texture = ExtResource("1_i5im0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.25, 2.5)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_v87u1")
