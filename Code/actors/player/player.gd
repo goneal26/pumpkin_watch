@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var movement_tween: Node = $MovementTween
 @onready var flashlight: RayCast2D = $Flashlight
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var data = get_node("/root/Data")
 
 @export var grid_size: int = 16
 
@@ -14,6 +15,8 @@ func _ready():
 	sprite.play("front")
 
 func _process(_delta: float):
+	if data.pumpkin_counter <= 0: # player shouldn't move after gameover
+		can_move = false
 #	direction.x = -int(Input.is_action_pressed("left")) + int(Input.is_action_pressed("right"))
 #	direction.y = -int(Input.is_action_pressed("up")) + int(Input.is_action_pressed("down"))
 	if Input.is_action_pressed("left"):
