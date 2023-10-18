@@ -52,4 +52,13 @@ zoom = Vector2(2, 2)
 position = Vector2(0, 1)
 color = Color(0.282353, 0.282353, 0.282353, 1)
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "12:00PM
+Night 1"
+
 [connection signal="timeout" from="RaccoonTimer" to="TileMap" method="_on_raccoon_timer_timeout"]
