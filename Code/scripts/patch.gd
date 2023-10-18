@@ -11,13 +11,12 @@ var map_size: Vector2i = Vector2i(36, 20)
 
 const VINE_ATLAS_COORD: Vector2i = Vector2i(1, 0)
 
-var night_count: int = 1
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for x in map_size.x:
 		for y in map_size.y:
 			if get_cell_atlas_coords(0, Vector2i(x, y)) == VINE_ATLAS_COORD and randf() < pumpkin_spawn_weight:
+				data.pumpkin_counter = data.pumpkin_counter + 1
 				var pumpkin = load("res://props/pumpkin.tscn")
 				var pumpkin_instance = pumpkin.instantiate()
 				get_parent().add_child.call_deferred(pumpkin_instance)
@@ -28,7 +27,8 @@ func update_label(text: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var time = night_timer.time_left
+	var time = int(night_timer.time_left)
+#	print(time)
 	if time == 360:
 		update_label("12:00 AM")
 	elif time == 300:
@@ -43,6 +43,12 @@ func _process(_delta):
 		update_label("5:00 AM")
 	elif time == 0:
 		update_label("6:00 AM") # jank af but whatever
+		
+	if data.pumpkin_counter == 0:
+		raccoon_timer.stop()
+		night_timer.stop()
+		data.is_gameover = true
+		# gameover condition
 
 func _on_raccoon_timer_timeout():
 	var directions: Dictionary = {
@@ -69,5 +75,6 @@ func _on_raccoon_timer_timeout():
 
 
 func _on_day_night_timer_timeout():
+	data.night_counter += 1
 	raccoon_timer.stop()
 	# end of night condition goes here

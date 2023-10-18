@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var movement_tween: Node = $MovementTween
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var eyes: PointLight2D = $Sprite2D/PointLight2D
+@onready var data = get_node("/root/Data")
 
 @export var grid_size : int = 16
 
@@ -48,6 +49,7 @@ func _physics_process(_delta: float):
 		if pumpkin != null and pumpkin.get_class() == "StaticBody2D":
 			if pumpkin.health <= 0:
 				pumpkin.queue_free()
+				data.pumpkin_counter = data.pumpkin_counter - 1
 			else:
 				pumpkin.health = pumpkin.health - 1
 	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO:
