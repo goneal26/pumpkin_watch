@@ -4,12 +4,13 @@ extends TileMap
 
 @onready var ui_label = get_node_or_null("../TimeUI/Label")
 @onready var night_timer = get_node_or_null("../DayNightTimer")
+@onready var data = get_node("/root/Data")
+@onready var raccoon_timer = get_node_or_null("../RaccoonTimer")
 
 var map_size: Vector2i = Vector2i(36, 20)
 
 const VINE_ATLAS_COORD: Vector2i = Vector2i(1, 0)
 
-var time_remaining: int = 6
 var night_count: int = 1
 
 # Called when the node enters the scene tree for the first time.
@@ -22,10 +23,26 @@ func _ready():
 				get_parent().add_child.call_deferred(pumpkin_instance)
 				pumpkin_instance.position = map_to_local(Vector2i(x, y))
 
+func update_label(text: String):
+	ui_label.set_text(text + "\nNight " + str(data.night_counter))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	var time = night_timer.time_left
+	if time == 360:
+		update_label("12:00 AM")
+	elif time == 300:
+		update_label("1:00 AM")
+	elif time == 240:
+		update_label("2:00 AM")
+	elif time == 180:
+		update_label("3:00 AM")
+	elif time == 120:
+		update_label("4:00 AM")
+	elif time == 60:
+		update_label("5:00 AM")
+	elif time == 0:
+		update_label("6:00 AM") # jank af but whatever
 
 func _on_raccoon_timer_timeout():
 	var directions: Dictionary = {
@@ -52,16 +69,5 @@ func _on_raccoon_timer_timeout():
 
 
 func _on_day_night_timer_timeout():
-	var clock: Dictionary = {
-		6: "12:00 AM",
-		5: "1:00 AM",
-		4: "2:00 AM",
-		3: "3:00 AM",
-		2: "4:00 AM",
-		1: "5:00 AM",
-		0: "6:00 AM" 
-	}
-	time_remaining = time_remaining - 1
-	ui_label.set_text(clock[time_remaining])
-	
-	
+	raccoon_timer.stop()
+	# end of night condition goes here
