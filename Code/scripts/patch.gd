@@ -2,9 +2,15 @@ extends TileMap
 
 @export var pumpkin_spawn_weight: float = 0.1
 
+@onready var ui_label = get_node_or_null("../TimeUI/Label")
+@onready var night_timer = get_node_or_null("../DayNightTimer")
+
 var map_size: Vector2i = Vector2i(36, 20)
 
 const VINE_ATLAS_COORD: Vector2i = Vector2i(1, 0)
+
+var time_remaining: int = 6
+var night_count: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,3 +49,19 @@ func _on_raccoon_timer_timeout():
 		Vector2.DOWN:
 			raccoon_instance.position = map_to_local(Vector2(randi_range(11, 24), 1))
 	raccoon_instance.run_direction = direction
+
+
+func _on_day_night_timer_timeout():
+	var clock: Dictionary = {
+		6: "12:00 AM",
+		5: "1:00 AM",
+		4: "2:00 AM",
+		3: "3:00 AM",
+		2: "4:00 AM",
+		1: "5:00 AM",
+		0: "6:00 AM" 
+	}
+	time_remaining = time_remaining - 1
+	ui_label.set_text(clock[time_remaining])
+	
+	
