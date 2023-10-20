@@ -1,5 +1,14 @@
 extends RayCast2D
 
+@onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+const INPUTS: Dictionary = {
+	"light_down": 0,
+	"light_right": 270,
+	"light_left": 90,
+	"light_up": 180
+}
+
 func _process(_delta):
 	if Input.is_action_pressed("light_down"):
 		visible = true
@@ -15,9 +24,14 @@ func _process(_delta):
 		rotation_degrees = 180
 	else:
 		visible = false
+	
+	for dir in INPUTS.keys():
+		if Input.is_action_just_pressed(dir):
+			if !sound.playing:
+				sound.play()
 
 func _physics_process(_delta):
-	if is_colliding():
+	if visible == true and is_colliding():
 		var raccoon = get_collider()
 		if raccoon != null and raccoon.get_class() == "CharacterBody2D":
 			raccoon.get_scared()

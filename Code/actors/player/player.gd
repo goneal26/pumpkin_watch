@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var flashlight: RayCast2D = $Flashlight
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var data = get_node("/root/Data")
+@onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var grid_size: int = 16
 
@@ -38,6 +39,7 @@ func _physics_process(_delta: float):
 	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO:
 		can_move = false
 		movement_tween.run(self, global_position + direction * grid_size)
+		sound.play()
 		movement_tween.tween.finished.connect(on_movement_tween_finished)
 
 func on_movement_tween_finished():

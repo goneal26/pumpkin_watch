@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var eyes: PointLight2D = $Sprite2D/PointLight2D
 @onready var data = get_node("/root/Data")
+@onready var step_sound: AudioStreamPlayer2D = $StepPlayer
+@onready var eat_sound: AudioStreamPlayer2D = $EatPlayer
 
 @export var grid_size : int = 16
 
@@ -48,6 +50,7 @@ func _physics_process(_delta: float):
 		var pumpkin = movement_validation.get_collider()
 		if pumpkin != null and pumpkin.get_class() == "StaticBody2D":
 			if pumpkin.health <= 0:
+				eat_sound.play()
 				pumpkin.queue_free()
 				data.pumpkin_counter = data.pumpkin_counter - 1
 			else:
@@ -55,6 +58,7 @@ func _physics_process(_delta: float):
 	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO:
 		can_move = false
 		movement_tween.run(self, global_position + direction * grid_size)
+		step_sound.play()
 		movement_tween.tween.finished.connect(on_movement_tween_finished)
 
 func on_movement_tween_finished():
