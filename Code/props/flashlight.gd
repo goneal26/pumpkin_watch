@@ -1,6 +1,8 @@
 extends RayCast2D
 
 @onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var data = get_node("/root/Data")
+@onready var creature = get_node_or_null("../../Creature")
 
 const INPUTS: Dictionary = {
 	"light_down": 0,
@@ -27,11 +29,22 @@ func _process(_delta):
 	
 	for dir in INPUTS.keys():
 		if Input.is_action_just_pressed(dir):
+			data.flashlight_on = true
 			if !sound.playing:
 				sound.play()
+		else:
+			data.flashlight_on = false
 
 func _physics_process(_delta):
 	if visible == true and is_colliding():
-		var raccoon = get_collider()
-		if raccoon != null and raccoon.get_class() == "CharacterBody2D":
-			raccoon.get_scared()
+		var object = get_collider()
+		if object != null and object.get_class() == "CharacterBody2D":
+			if object.node_name == "creature":
+				creature.can_move = false
+			elif object.node_name == "enemy":
+					object.get_scared()
+#			if object.node_name == "enemy":
+#				object.get_scared()
+#			elif object.node_name == "creature":
+#				# stop moving only if raycast colliding
+#				pass

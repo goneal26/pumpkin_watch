@@ -7,6 +7,9 @@ extends Node2D
 func update_text():
 	nights_label.set_text("YOUR PUMPKIN PATCH SURVIVED " + str(data.night_counter) + " NIGHTS.")
 
+func death_text():
+	nights_label.set_text("SOMETHING DRAGS YOU AWAY.")
+
 func _ready():
 	nights_label.set_text("YOUR PUMPKIN PATCH SURVIVED " + str(data.night_counter) + " NIGHTS.")
 

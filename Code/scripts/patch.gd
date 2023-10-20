@@ -9,6 +9,8 @@ extends TileMap
 @onready var gameover_ui = get_node_or_null("../UI/GameOverUI")
 @onready var endofnight_ui = get_node_or_null("../UI/EndOfNightUI")
 
+var creature_present: bool = false
+
 var map_size: Vector2i = Vector2i(36, 20)
 
 const VINE_ATLAS_COORD: Vector2i = Vector2i(1, 0)
@@ -49,13 +51,16 @@ func _process(_delta):
 	elif time == 0:
 		update_label("6:00 AM") # jank af but whatever
 		
-	if data.pumpkin_counter >= 0:
+	if data.pumpkin_counter <= 0 or data.player_isdead:
 		raccoon_timer.stop()
 		night_timer.stop()
 		data.is_gameover = true
 		# gameover condition
 		gameover_ui.visible = true
-		gameover_ui.update_text()
+		if data.player_isdead:
+			gameover_ui.death_text()
+		else:
+			gameover_ui.update_text()
 
 func remove_enemies():
 	if get_tree().get_root() != null:
@@ -105,6 +110,12 @@ func _on_night_continue_pressed():
 	raccoon_timer.start()
 	night_timer.start()
 	update_label("12:00 AM")
+	if creature_present == false and data.pumpkin_counter <= 5:
+		creature_present = true
+		var creature = load("res://actors/creature.tscn")
+		var creature_instance = creature.instantiate()
+		get_parent().add_child.call_deferred(creature_instance)
+		creature_instance.position = Vector2(288, -93)
 
 
 func _on_to_main_menu_pressed():
