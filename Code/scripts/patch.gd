@@ -2,10 +2,12 @@ extends TileMap
 
 @export var pumpkin_spawn_weight: float = 0.1
 
-@onready var ui_label = get_node_or_null("../TimeUI/Label")
+@onready var ui_label = get_node_or_null("../UI/Label")
 @onready var night_timer = get_node_or_null("../DayNightTimer")
 @onready var data = get_node("/root/Data")
 @onready var raccoon_timer = get_node_or_null("../RaccoonTimer")
+@onready var gameover_ui = get_node_or_null("../UI/GameOverUI")
+@onready var endofnight_ui = get_node_or_null("../UI/EndOfNightUI")
 
 var map_size: Vector2i = Vector2i(36, 20)
 
@@ -23,23 +25,23 @@ func _ready():
 				pumpkin_instance.position = map_to_local(Vector2i(x, y))
 
 func update_label(text: String):
-	ui_label.set_text(text + "\nNight " + str(data.night_counter))
+	ui_label.set_text(text + "\nNIGHT " + str(data.night_counter))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var time = int(night_timer.time_left)
 #	print(time)
-	if time == 360:
+	if time == 180:
 		update_label("12:00 AM")
-	elif time == 300:
+	elif time == 150:
 		update_label("1:00 AM")
-	elif time == 240:
-		update_label("2:00 AM")
-	elif time == 180:
-		update_label("3:00 AM")
 	elif time == 120:
-		update_label("4:00 AM")
+		update_label("2:00 AM")
+	elif time == 90:
+		update_label("3:00 AM")
 	elif time == 60:
+		update_label("4:00 AM")
+	elif time == 30:
 		update_label("5:00 AM")
 	elif time == 0:
 		update_label("6:00 AM") # jank af but whatever
@@ -49,6 +51,8 @@ func _process(_delta):
 		night_timer.stop()
 		data.is_gameover = true
 		# gameover condition
+		gameover_ui.visible = true
+		gameover_ui.update_text()
 
 func _on_raccoon_timer_timeout():
 	var directions: Dictionary = {
@@ -75,6 +79,16 @@ func _on_raccoon_timer_timeout():
 
 
 func _on_day_night_timer_timeout():
-	data.night_counter += 1
 	raccoon_timer.stop()
-	# end of night condition goes here
+	data.is_gameover = true # game not actually over, just turning off player movement
+	endofnight_ui.visible = true
+	endofnight_ui.get_child(3).set_text("End of night " + str(data.night_counter) + ".")
+
+# end of night, continue to next night
+func _on_night_continue_pressed():
+	endofnight_ui.visible = false
+	data.night_counter = data.night_counter + 1
+	raccoon_timer.wait_time = raccoon_timer.wait_time / 1.5
+	raccoon_timer.start()
+	night_timer.start()
+	update_label("12:00 AM")

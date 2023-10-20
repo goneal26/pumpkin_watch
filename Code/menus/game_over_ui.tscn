@@ -1,49 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://cs1frsmy4iyey"]
+[gd_scene load_steps=3 format=3 uid="uid://cs1frsmy4iyey"]
 
 [ext_resource type="Script" path="res://menus/game_over_ui.gd" id="1_bid0m"]
+[ext_resource type="FontFile" uid="uid://cnc2n4rjvnp77" path="res://assets/24Songs.ttf" id="2_4mvep"]
 
-[node name="GameOverUI" type="Control"]
-layout_mode = 3
-anchors_preset = 0
+[node name="GameOverUI" type="Node2D"]
+position = Vector2(200, 98)
 script = ExtResource("1_bid0m")
-metadata/_edit_vertical_guides_ = [200.0]
+metadata/_edit_vertical_guides_ = [200.0, 100.0, 300.0]
+metadata/_edit_horizontal_guides_ = [153.0]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -200.0
+offset_top = -98.0
+offset_right = -100.0
+offset_bottom = -49.0
+scale = Vector2(4, 4)
+color = Color(0, 0, 0, 1)
 
-[node name="UIBackground" type="Node2D" parent="CanvasLayer"]
+[node name="Background2" type="ColorRect" parent="."]
+offset_left = -196.0
+offset_top = -94.0
+offset_right = -98.0
+offset_bottom = -47.0
 scale = Vector2(4, 4)
 
-[node name="Background" type="ColorRect" parent="CanvasLayer/UIBackground"]
-offset_right = 100.0
+[node name="Background3" type="ColorRect" parent="."]
+offset_left = -192.0
+offset_top = -90.0
+offset_right = -96.0
+offset_bottom = -45.0
+scale = Vector2(4, 4)
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="."]
+offset_left = -73.0
+offset_top = -80.0
+offset_right = 87.0
+offset_bottom = -18.0
+theme_override_fonts/font = ExtResource("2_4mvep")
+theme_override_font_sizes/font_size = 32
+text = "GAME OVER!"
+
+[node name="NightsLabel" type="Label" parent="."]
+offset_left = -148.0
+offset_top = -19.0
+offset_right = 148.0
+offset_bottom = 7.0
+theme_override_fonts/font = ExtResource("2_4mvep")
+theme_override_font_sizes/font_size = 16
+text = "YOUR PUMPKIN PATCH SURVIVED X NIGHTS."
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -56.0
+offset_top = 39.0
+offset_right = 55.0
+offset_bottom = 71.0
+
+[node name="ToMainMenu" type="Button" parent="."]
+offset_left = -55.0
+offset_top = 40.0
+offset_right = 54.0
 offset_bottom = 70.0
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
+theme_override_font_sizes/font_size = 16
 
-[node name="Background2" type="ColorRect" parent="CanvasLayer/UIBackground"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 99.0
-offset_bottom = 69.0
-metadata/_edit_lock_ = true
-
-[node name="Background3" type="ColorRect" parent="CanvasLayer/UIBackground"]
-offset_left = 2.0
-offset_top = 2.0
-offset_right = 98.0
-offset_bottom = 68.0
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="Title" type="Label" parent="CanvasLayer"]
-offset_left = 150.0
-offset_top = 16.0
-offset_right = 239.0
-offset_bottom = 42.0
-text = "Game over!"
-
-[node name="NightsLabel" type="Label" parent="CanvasLayer"]
-offset_left = 48.0
-offset_top = 63.0
-offset_right = 345.0
-offset_bottom = 89.0
-text = "Your pumpkin patch survived x nights."
+[node name="Label" type="Label" parent="."]
+offset_left = -53.0
+offset_top = 30.0
+offset_right = 55.0
+offset_bottom = 77.0
+theme_override_fonts/font = ExtResource("2_4mvep")
+theme_override_font_sizes/font_size = 24
+text = "MAIN MENU"
