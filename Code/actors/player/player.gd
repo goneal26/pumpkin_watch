@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 @export var grid_size: int = 16
+const node_name := "player"
 
 var direction: Vector2 = Vector2.ZERO
 var can_move: bool = true
@@ -16,7 +17,7 @@ func _ready():
 	sprite.play("front")
 
 func _process(_delta: float):
-	if data.pumpkin_counter <= 0: # player shouldn't move after gameover
+	if data.is_gameover == true: # player shouldn't move after gameover
 		can_move = false
 #	direction.x = -int(Input.is_action_pressed("left")) + int(Input.is_action_pressed("right"))
 #	direction.y = -int(Input.is_action_pressed("up")) + int(Input.is_action_pressed("down"))

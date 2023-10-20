@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 @export var grid_size : int = 16
 
+const node_name = "enemy"
 var run_direction: Vector2 
 var direction: Vector2 = Vector2.ZERO
 var can_move: bool = true

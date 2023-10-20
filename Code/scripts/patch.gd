@@ -30,6 +30,9 @@ func update_label(text: String):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	var time = int(night_timer.time_left)
+	
+	if night_timer.is_stopped():
+		remove_enemies()
 #	print(time)
 	if time == 180:
 		update_label("12:00 AM")
@@ -46,13 +49,21 @@ func _process(_delta):
 	elif time == 0:
 		update_label("6:00 AM") # jank af but whatever
 		
-	if data.pumpkin_counter == 0:
+	if data.pumpkin_counter >= 0:
 		raccoon_timer.stop()
 		night_timer.stop()
 		data.is_gameover = true
 		# gameover condition
 		gameover_ui.visible = true
 		gameover_ui.update_text()
+
+func remove_enemies():
+	if get_tree().get_root() != null:
+		var children = get_parent().get_children()
+		for child in children:
+			if child.get_class() == "CharacterBody2D":
+				if child.node_name == "enemy":
+					child.queue_free()
 
 func _on_raccoon_timer_timeout():
 	var directions: Dictionary = {
@@ -80,15 +91,23 @@ func _on_raccoon_timer_timeout():
 
 func _on_day_night_timer_timeout():
 	raccoon_timer.stop()
+	remove_enemies()
 	data.is_gameover = true # game not actually over, just turning off player movement
 	endofnight_ui.visible = true
 	endofnight_ui.get_child(3).set_text("End of night " + str(data.night_counter) + ".")
 
 # end of night, continue to next night
 func _on_night_continue_pressed():
+	endofnight_ui.get_child(10).play()
 	endofnight_ui.visible = false
 	data.night_counter = data.night_counter + 1
 	raccoon_timer.wait_time = raccoon_timer.wait_time / 1.5
 	raccoon_timer.start()
 	night_timer.start()
 	update_label("12:00 AM")
+
+
+func _on_to_main_menu_pressed():
+	endofnight_ui.get_child(10).play()
+	await endofnight_ui.get_child(10).finished
+	data.goto_scene("res://menus/main_menu.tscn")

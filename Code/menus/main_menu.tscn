@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk2q4wkllt8a8"]
+[gd_scene load_steps=6 format=3 uid="uid://dk2q4wkllt8a8"]
 
+[ext_resource type="Script" path="res://menus/main_menu.gd" id="1_3uvrg"]
 [ext_resource type="FontFile" uid="uid://cnc2n4rjvnp77" path="res://assets/24Songs.ttf" id="1_sravj"]
 [ext_resource type="Texture2D" uid="uid://coq4hvfci3yaa" path="res://assets/enemy.png" id="2_bydac"]
 [ext_resource type="Texture2D" uid="uid://ckvgyxoi08s73" path="res://assets/pumpkin.png" id="3_e37r0"]
+[ext_resource type="AudioStream" uid="uid://27fnx3257hdq" path="res://assets/sounds/beep.wav" id="5_43058"]
 
 [node name="MainMenu" type="Node2D"]
+script = ExtResource("1_3uvrg")
 metadata/_edit_vertical_guides_ = [576.0]
 
 [node name="Background" type="ColorRect" parent="."]
@@ -82,3 +85,9 @@ scale = Vector2(3, 3)
 theme_override_fonts/font = ExtResource("1_sravj")
 theme_override_font_sizes/font_size = 24
 text = "HOW TO PLAY"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_43058")
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="HowToPlay" to="." method="_on_how_to_play_pressed"]

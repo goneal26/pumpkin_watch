@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs1frsmy4iyey"]
+[gd_scene load_steps=4 format=3 uid="uid://cs1frsmy4iyey"]
 
 [ext_resource type="Script" path="res://menus/game_over_ui.gd" id="1_bid0m"]
 [ext_resource type="FontFile" uid="uid://cnc2n4rjvnp77" path="res://assets/24Songs.ttf" id="2_4mvep"]
+[ext_resource type="AudioStream" uid="uid://27fnx3257hdq" path="res://assets/sounds/beep.wav" id="3_tad65"]
 
 [node name="GameOverUI" type="Node2D"]
 position = Vector2(200, 98)
@@ -71,3 +72,8 @@ offset_bottom = 77.0
 theme_override_fonts/font = ExtResource("2_4mvep")
 theme_override_font_sizes/font_size = 24
 text = "MAIN MENU"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tad65")
+
+[connection signal="pressed" from="ToMainMenu" to="." method="_on_to_main_menu_pressed"]
