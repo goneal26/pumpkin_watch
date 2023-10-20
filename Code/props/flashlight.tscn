@@ -25,3 +25,5 @@ shadow_enabled = true
 texture = ExtResource("2_ypwgm")
 offset = Vector2(48, 0)
 texture_scale = 2.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

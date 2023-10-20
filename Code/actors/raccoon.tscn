@@ -36,3 +36,5 @@ script = ExtResource("2_mdty0")
 script = ExtResource("3_ixhak")
 move_time = 0.25
 transition = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
