@@ -84,6 +84,7 @@ func remove_enemies():
 			if child.get_class() == "CharacterBody2D":
 				if child.node_name == "enemy" or child.node_name == "creature":
 					child.queue_free()
+					data.creature_present = false
 
 func _on_raccoon_timer_timeout():
 	var directions: Dictionary = {
