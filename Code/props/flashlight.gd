@@ -40,9 +40,11 @@ func _physics_process(_delta):
 		var object = get_collider()
 		if object != null and object.get_class() == "CharacterBody2D":
 			if object.node_name == "creature":
-				creature.can_move = false
+				data.creature_canmove = false
 			elif object.node_name == "enemy":
 					object.get_scared()
+	else:
+		data.creature_canmove = true
 #			if object.node_name == "enemy":
 #				object.get_scared()
 #			elif object.node_name == "creature":

@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 var node_name: String = "creature"
 @export var speed: int = 10
-var can_move: bool = true
 var direction: Vector2 = Vector2.ZERO
 @onready var player: CharacterBody2D = get_node_or_null("../Player")
 @onready var data = get_node("/root/Data")
@@ -14,7 +13,7 @@ func _ready():
 	sprite.frame = 1
 
 func _physics_process(_delta):
-	if can_move and player != null:
+	if data.creature_canmove and player != null:
 		sound.playing = true
 		sprite.frame = 1
 		direction = position.direction_to(player.position)

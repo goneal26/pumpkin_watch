@@ -7,7 +7,7 @@ extends CharacterBody2D
 @onready var data = get_node("/root/Data")
 @onready var step_sound: AudioStreamPlayer2D = $StepPlayer
 @onready var eat_sound: AudioStreamPlayer2D = $EatPlayer
-
+@onready var scare_sound: AudioStreamPlayer2D = $ScarePlayer
 @export var grid_size : int = 16
 
 const node_name = "enemy"
@@ -18,6 +18,7 @@ var is_scared: bool = false
 
 func get_scared():
 	if is_scared == false:
+		scare_sound.play()
 		is_scared = true
 		run_direction = -run_direction
 		if run_direction.x < 0:

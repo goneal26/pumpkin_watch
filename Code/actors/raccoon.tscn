@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3ncph2e40ll4"]
+[gd_scene load_steps=10 format=3 uid="uid://c3ncph2e40ll4"]
 
 [ext_resource type="Script" path="res://actors/raccoon.gd" id="1_ib0b1"]
 [ext_resource type="Texture2D" uid="uid://coq4hvfci3yaa" path="res://assets/enemy.png" id="1_u01hg"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d2nvjhnaaqlh8" path="res://assets/enemy_eyes.png" id="5_yvdre"]
 [ext_resource type="AudioStream" uid="uid://bpvm66mwl2u7d" path="res://assets/sounds/step.wav" id="6_205mn"]
 [ext_resource type="AudioStream" uid="uid://bsfj74c7ud6c1" path="res://assets/sounds/boom.wav" id="7_rlgy2"]
+[ext_resource type="AudioStream" uid="uid://c1h2m2trkt1xd" path="res://assets/sounds/chirp.wav" id="8_8lnhy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cq8c4"]
 size = Vector2(9, 12.0002)
@@ -44,3 +45,6 @@ stream = ExtResource("6_205mn")
 
 [node name="EatPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_rlgy2")
+
+[node name="ScarePlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_8lnhy")

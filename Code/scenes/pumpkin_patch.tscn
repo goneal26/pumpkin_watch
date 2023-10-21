@@ -171,14 +171,14 @@ z_index = 1
 offset_left = 110.0
 offset_top = -84.0
 offset_right = 472.0
-offset_bottom = -2.0
+offset_bottom = -1.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="ColorRect4" type="ColorRect" parent="."]
 z_index = 1
 offset_left = 113.0
-offset_top = 329.0
+offset_top = 336.0
 offset_right = 475.0
 offset_bottom = 411.0
 color = Color(0, 0, 0, 1)
@@ -186,7 +186,7 @@ metadata/_edit_lock_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = 1
-offset_left = 453.0
+offset_left = 450.0
 offset_top = -23.0
 offset_right = 598.0
 offset_bottom = 345.0

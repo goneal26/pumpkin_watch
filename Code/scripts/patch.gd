@@ -67,7 +67,7 @@ func remove_enemies():
 		var children = get_parent().get_children()
 		for child in children:
 			if child.get_class() == "CharacterBody2D":
-				if child.node_name == "enemy":
+				if child.node_name == "enemy" or child.node_name == "creature":
 					child.queue_free()
 
 func _on_raccoon_timer_timeout():
