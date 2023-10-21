@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ba7un361xeghb"]
+[gd_scene load_steps=10 format=3 uid="uid://ba7un361xeghb"]
 
 [ext_resource type="Texture2D" uid="uid://cr687ls7ckx4n" path="res://assets/tilemap.png" id="1_aj6v0"]
 [ext_resource type="PackedScene" uid="uid://dhanruwapv4l1" path="res://actors/player/player.tscn" id="2_rsgph"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1frsmy4iyey" path="res://menus/game_over_ui.tscn" id="4_8clsm"]
 [ext_resource type="FontFile" uid="uid://cnc2n4rjvnp77" path="res://assets/24Songs.ttf" id="5_ft8sd"]
 [ext_resource type="AudioStream" uid="uid://27fnx3257hdq" path="res://assets/sounds/beep.wav" id="6_fy3fe"]
+[ext_resource type="PackedScene" uid="uid://t3kswj6x6l6x" path="res://actors/creature.tscn" id="7_s1no4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fiwhk"]
 texture = ExtResource("1_aj6v0")
@@ -192,6 +193,9 @@ offset_right = 598.0
 offset_bottom = 345.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="Creature" parent="." instance=ExtResource("7_s1no4")]
+position = Vector2(315, 40)
 
 [connection signal="timeout" from="RaccoonTimer" to="TileMap" method="_on_raccoon_timer_timeout"]
 [connection signal="timeout" from="DayNightTimer" to="TileMap" method="_on_day_night_timer_timeout"]

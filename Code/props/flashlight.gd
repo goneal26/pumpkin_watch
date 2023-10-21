@@ -3,6 +3,7 @@ extends RayCast2D
 @onready var sound: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var data = get_node("/root/Data")
 @onready var creature = get_node_or_null("../../Creature")
+@onready var sound2: AudioStreamPlayer2D = $Sound2
 
 const INPUTS: Dictionary = {
 	"light_down": 0,
