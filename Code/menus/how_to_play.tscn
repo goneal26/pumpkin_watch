@@ -32,20 +32,20 @@ horizontal_alignment = 1
 
 [node name="Instructions1" type="Label" parent="."]
 offset_left = 439.0
-offset_top = 125.0
+offset_top = 97.0
 offset_right = 1130.0
-offset_bottom = 265.0
+offset_bottom = 237.0
 theme_override_fonts/font = ExtResource("1_tni6m")
 theme_override_font_sizes/font_size = 40
-text = "Use WASD to walk around and watch over your pumpkin patch."
+text = "Use WASD to walk around and watch over your pumpkin patch. Press Escape to pause."
 horizontal_alignment = 2
 autowrap_mode = 3
 
 [node name="Instructions2" type="Label" parent="."]
-offset_left = 16.0
-offset_top = 253.0
-offset_right = 991.0
-offset_bottom = 457.0
+offset_left = 13.0
+offset_top = 233.0
+offset_right = 988.0
+offset_bottom = 437.0
 theme_override_fonts/font = ExtResource("1_tni6m")
 theme_override_font_sizes/font_size = 40
 text = "Throughout the night, animals will come to eat your pumpkins. Use the arrow keys to shine your flashlight at them and scare them away."
@@ -58,25 +58,25 @@ texture = ExtResource("2_ygbnp")
 flip_h = true
 
 [node name="Player1" type="Sprite2D" parent="."]
-position = Vector2(371, 198)
+position = Vector2(376, 183)
 scale = Vector2(8, 8)
 texture = ExtResource("3_q22yj")
 
 [node name="Player2" type="Sprite2D" parent="."]
-position = Vector2(237, 198)
+position = Vector2(242, 183)
 scale = Vector2(8, 8)
 texture = ExtResource("4_k1faf")
 
 [node name="Player3" type="Sprite2D" parent="."]
-position = Vector2(98, 198)
+position = Vector2(103, 183)
 scale = Vector2(8, 8)
 texture = ExtResource("5_ynon5")
 
 [node name="Instructions3" type="Label" parent="."]
 offset_left = -2.0
-offset_top = 388.0
+offset_top = 374.0
 offset_right = 1154.0
-offset_bottom = 560.0
+offset_bottom = 546.0
 theme_override_fonts/font = ExtResource("1_tni6m")
 theme_override_font_sizes/font_size = 40
 text = "Your shift ends at 6:00AM, or when you get fired for losing all your pumpkins. And be careful, more animals seem to come every night..."

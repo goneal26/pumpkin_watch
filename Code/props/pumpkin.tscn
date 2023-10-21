@@ -7,7 +7,8 @@
 size = Vector2(10, 9)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_s2qb5"]
-polygon = PackedVector2Array(-6, 5, -4, 7, 4, 7, 6, 5, 6, -1, 4, -3, -4, -3, -6, -1)
+cull_mode = 1
+polygon = PackedVector2Array(-6, 5, -4, 7, 4, 7, 6, 5, 6, -1, 4, -3, -4, -3, -6, -1, -6, 5)
 
 [node name="Pumpkin" type="StaticBody2D"]
 collision_layer = 3

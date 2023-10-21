@@ -8,6 +8,8 @@ extends TileMap
 @onready var raccoon_timer = get_node_or_null("../RaccoonTimer")
 @onready var gameover_ui = get_node_or_null("../UI/GameOverUI")
 @onready var endofnight_ui = get_node_or_null("../UI/EndOfNightUI")
+@onready var pause_label: Label = get_node_or_null("../UI/Paused")
+@onready var pumpkin_label: Label = get_node_or_null("../UI/Control/PumpkinCount")
 
 var creature_present: bool = false
 
@@ -17,6 +19,8 @@ const VINE_ATLAS_COORD: Vector2i = Vector2i(1, 0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	raccoon_timer.start()
+	night_timer.start()
 	for x in map_size.x:
 		for y in map_size.y:
 			if get_cell_atlas_coords(0, Vector2i(x, y)) == VINE_ATLAS_COORD and randf() < pumpkin_spawn_weight:
@@ -31,6 +35,17 @@ func update_label(text: String):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	pumpkin_label.set_text(str(data.pumpkin_counter))
+	
+	if Input.is_action_just_pressed("pause"):
+		data.is_paused = !data.is_paused
+		pause_label.visible = data.is_paused
+		raccoon_timer.paused = data.is_paused
+		night_timer.paused = data.is_paused
+#		data.is_gameover = data.is_paused
+		data.creature_canmove = !data.is_paused
+		
+	
 	var time = int(night_timer.time_left)
 	
 	if night_timer.is_stopped():
@@ -97,12 +112,13 @@ func _on_raccoon_timer_timeout():
 func _on_day_night_timer_timeout():
 	raccoon_timer.stop()
 	remove_enemies()
-	data.is_gameover = true # game not actually over, just turning off player movement
+	data.is_paused = true
 	endofnight_ui.visible = true
 	endofnight_ui.get_child(3).set_text("End of night " + str(data.night_counter) + ".")
 
 # end of night, continue to next night
 func _on_night_continue_pressed():
+	data.is_paused = false
 	endofnight_ui.get_child(10).play()
 	endofnight_ui.visible = false
 	data.night_counter = data.night_counter + 1
@@ -119,6 +135,9 @@ func _on_night_continue_pressed():
 
 
 func _on_to_main_menu_pressed():
+	data.is_paused = false
+	data.player_isdead = false
+	data.is_gameover = false
 	endofnight_ui.get_child(10).play()
 	await endofnight_ui.get_child(10).finished
 	data.goto_scene("res://menus/main_menu.tscn")

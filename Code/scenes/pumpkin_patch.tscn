@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1frsmy4iyey" path="res://menus/game_over_ui.tscn" id="4_8clsm"]
 [ext_resource type="FontFile" uid="uid://cnc2n4rjvnp77" path="res://assets/24Songs.ttf" id="5_ft8sd"]
 [ext_resource type="AudioStream" uid="uid://27fnx3257hdq" path="res://assets/sounds/beep.wav" id="6_fy3fe"]
-[ext_resource type="PackedScene" uid="uid://t3kswj6x6l6x" path="res://actors/creature.tscn" id="7_s1no4"]
+[ext_resource type="Texture2D" uid="uid://ckvgyxoi08s73" path="res://assets/pumpkin.png" id="7_p0qqt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fiwhk"]
 texture = ExtResource("1_aj6v0")
@@ -58,7 +58,7 @@ zoom = Vector2(2, 2)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(0, 1)
-color = Color(0.262745, 0.262745, 0.262745, 1)
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -72,6 +72,52 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("5_ft8sd")
 text = "12:00AM
 NIGHT 1"
+
+[node name="Paused" type="Label" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -50.0
+offset_right = 23.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_ft8sd")
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="UI/Paused"]
+layout_mode = 0
+offset_left = -18.5
+offset_top = 27.75
+offset_right = 92.5
+offset_bottom = 60.75
+scale = Vector2(0.75, 0.75)
+
+[node name="ToMainMenu2" type="Button" parent="UI/Paused"]
+layout_mode = 0
+offset_left = -17.5
+offset_top = 29.25
+offset_right = 91.5
+offset_bottom = 60.25
+scale = Vector2(0.75, 0.75)
+
+[node name="Label" type="Label" parent="UI/Paused"]
+layout_mode = 0
+offset_left = -16.5
+offset_top = 22.25
+offset_right = 91.5
+offset_bottom = 54.25
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/font = ExtResource("5_ft8sd")
+theme_override_font_sizes/font_size = 24
+text = "MAIN MENU"
 
 [node name="GameOverUI" parent="UI" instance=ExtResource("4_8clsm")]
 visible = false
@@ -158,6 +204,37 @@ text = "MAIN MENU"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="UI/EndOfNightUI"]
 stream = ExtResource("6_fy3fe")
 
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchor_left = 1.0
+anchor_top = 0.505
+anchor_right = 1.0
+anchor_bottom = 0.505
+offset_left = -72.0
+offset_top = 3.76001
+offset_right = -72.0
+offset_bottom = 3.76001
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control"]
+position = Vector2(0, -39)
+scale = Vector2(4, 4)
+texture = ExtResource("7_p0qqt")
+
+[node name="PumpkinCount" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = -89.0
+offset_top = -38.0
+offset_right = 3.0
+offset_bottom = -11.0
+scale = Vector2(2, 2)
+theme_override_fonts/font = ExtResource("5_ft8sd")
+theme_override_font_sizes/font_size = 24
+text = "223"
+horizontal_alignment = 1
+
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 1
 offset_left = -19.0
@@ -194,10 +271,8 @@ offset_bottom = 345.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Creature" parent="." instance=ExtResource("7_s1no4")]
-position = Vector2(315, 40)
-
 [connection signal="timeout" from="RaccoonTimer" to="TileMap" method="_on_raccoon_timer_timeout"]
 [connection signal="timeout" from="DayNightTimer" to="TileMap" method="_on_day_night_timer_timeout"]
+[connection signal="pressed" from="UI/Paused/ToMainMenu2" to="TileMap" method="_on_to_main_menu_pressed"]
 [connection signal="pressed" from="UI/EndOfNightUI/Continue" to="TileMap" method="_on_night_continue_pressed"]
 [connection signal="pressed" from="UI/EndOfNightUI/ToMainMenu" to="TileMap" method="_on_to_main_menu_pressed"]

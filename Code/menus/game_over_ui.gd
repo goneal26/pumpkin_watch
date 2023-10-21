@@ -16,4 +16,6 @@ func _ready():
 
 func _on_to_main_menu_pressed():
 	sound.play()
+	data.is_paused = false
+	await sound.finished
 	data.goto_scene("res://menus/main_menu.tscn")

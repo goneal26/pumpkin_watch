@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://t3kswj6x6l6x"]
+[gd_scene load_steps=9 format=3 uid="uid://t3kswj6x6l6x"]
 
 [ext_resource type="Script" path="res://actors/creature.gd" id="1_204ic"]
 [ext_resource type="Texture2D" uid="uid://33fmxjtu0ieg" path="res://assets/creature2.png" id="1_lycyk"]
 [ext_resource type="Texture2D" uid="uid://bjuyxab8u1act" path="res://assets/creature1.png" id="2_2gqoa"]
+[ext_resource type="Texture2D" uid="uid://cj2atle0sm7go" path="res://assets/creature_eyes.png" id="2_mc7cj"]
 [ext_resource type="AudioStream" uid="uid://nxox737j0jvg" path="res://assets/sounds/drone.wav" id="4_chdoy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_np52p"]
@@ -26,9 +27,13 @@ size = Vector2(9, 30)
 radius = 3.0
 
 [node name="Creature" type="CharacterBody2D"]
+z_index = 1
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_204ic")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("2_mc7cj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_np52p")

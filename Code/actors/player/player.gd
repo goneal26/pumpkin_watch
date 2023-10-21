@@ -21,6 +21,7 @@ func _process(_delta: float):
 		can_move = false
 #	direction.x = -int(Input.is_action_pressed("left")) + int(Input.is_action_pressed("right"))
 #	direction.y = -int(Input.is_action_pressed("up")) + int(Input.is_action_pressed("down"))
+	
 	if Input.is_action_pressed("left"):
 		sprite.flip_h = true
 		sprite.play("side")
@@ -37,7 +38,7 @@ func _process(_delta: float):
 		direction = Vector2.UP
 
 func _physics_process(_delta: float):
-	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO:
+	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO and !data.is_paused:
 		can_move = false
 		movement_tween.run(self, global_position + direction * grid_size)
 		sound.play()
@@ -46,3 +47,9 @@ func _physics_process(_delta: float):
 func on_movement_tween_finished():
 	can_move = true
 	direction = Vector2.ZERO
+
+
+func _on_area_2d_body_entered(body):
+#	print(body.get_class())
+	if body.get_class() == "CharacterBody2D" and body.node_name == "enemy":
+		body.get_scared()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dhanruwapv4l1"]
+[gd_scene load_steps=16 format=3 uid="uid://dhanruwapv4l1"]
 
 [ext_resource type="Script" path="res://actors/player/player.gd" id="1_m1jtw"]
 [ext_resource type="Script" path="res://scripts/MovementValidation.gd" id="2_0ec25"]
@@ -52,6 +52,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ben00"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_w3oty"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_m1jtw")
@@ -73,12 +75,31 @@ shape = SubResource("CircleShape2D_ben00")
 
 [node name="Flashlight" parent="." instance=ExtResource("5_brtat")]
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
-shadow_enabled = true
-texture = ExtResource("11_5oi0p")
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_8mn7u")
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[node name="MainLight" type="PointLight2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1.25, 1.25)
+shadow_enabled = true
+texture = ExtResource("11_5oi0p")
+
+[node name="ShadowLight" type="PointLight2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1.25, 1.25)
+range_item_cull_mask = 2
+shadow_enabled = true
+texture = ExtResource("11_5oi0p")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_w3oty")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

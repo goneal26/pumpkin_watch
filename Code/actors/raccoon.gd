@@ -36,10 +36,12 @@ func _ready():
 func flip(is_flipped: bool):
 	if is_flipped:
 		sprite.flip_h = true
-		eyes.texture = load("res://assets/enemy_eyes_flipped.png")
+		eyes.offset = Vector2(-9, 0)
+#		eyes.texture = load("res://assets/enemy_eyes_flipped.png")
 	else: 
 		sprite.flip_h = false
-		eyes.texture = load("res://assets/enemy_eyes.png")
+		eyes.offset = Vector2.ZERO
+#		eyes.texture = load("res://assets/enemy_eyes.png")
 # this code puts out a really weird c++ error, dont know what it means but it doesn't break anything
 
 func _process(_delta):
@@ -57,7 +59,7 @@ func _physics_process(_delta: float):
 				data.pumpkin_counter = data.pumpkin_counter - 1
 			else:
 				pumpkin.health = pumpkin.health - 1
-	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO:
+	if movement_validation.validate_movement(direction * grid_size) and can_move and direction != Vector2.ZERO and !data.is_paused:
 		can_move = false
 		movement_tween.run(self, global_position + direction * grid_size)
 		step_sound.play()
